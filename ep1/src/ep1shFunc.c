@@ -1,14 +1,29 @@
+ /*------------------------------------------*
+  |              ep1shFunc                   |
+  *------------------------------------------* 
+  | Este arquivo contem a impletacao das     |
+  | funcoes usadas para o ep1sh veja ep1sh.h |
+  | para definicoes de uma das funcoes       |             
+  *------------------------------------------*/
+
 #include <stdio.h>
 #include <unistd.h>
 #include <util.h>
-
-void bufferClean(char *buffer, int size) {
+ /*------------------------------------------*
+  |            commandClean                  |
+  *------------------------------------------*/
+void commandClean(char *buffer, int size) {
     int x;
     for (x = 0; x < size; x++)
        buffer[x] = 0; 
 }
+ /*------------------------------------------*/
 
-void listClean(char **list) {
+
+ /*------------------------------------------*
+  |             argumentsClean               |
+  *------------------------------------------*/
+void argumentsClean(char **list) {
     int x;
     for (x = 0; x < MAXCOMMAND; x++) {
       
@@ -18,8 +33,12 @@ void listClean(char **list) {
        list[4][x] = 0;   
     }
 }
- 
+ /*------------------------------------------*/
 
+
+ /*------------------------------------------*
+  |                striComp                  |
+  *------------------------------------------*/
 int  striComp(char *str, char *comp, int size) {
     int x = 0;
     for (x; x < size; x++)
@@ -27,7 +46,12 @@ int  striComp(char *str, char *comp, int size) {
             return 0;
     return 1;
 }
+ /*------------------------------------------*/
 
+
+/*-------------------------------------------*
+  |              getArguments                |
+  *------------------------------------------*/
 void getArguments(char *line,char command[],char **arguments) {
   int x ;
   int y = 1;
@@ -48,3 +72,4 @@ void getArguments(char *line,char command[],char **arguments) {
     }
   }
 }
+ /*------------------------------------------*/
