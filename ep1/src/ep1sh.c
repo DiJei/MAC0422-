@@ -62,6 +62,25 @@ int main(int argc, char *argv[]) {
          }
       }
     }
+    
+    if (striComp(command,"./ep1",5)) {
+      switch ( pid = fork() ) {
+       case -1:
+         perror("fork()");
+         exit(EXIT_FAILURE);
+       case 0: 
+         arguments[0] = "ep1";
+         arguments[5] = NULL;
+         status = execv(command,arguments);
+         exit(status); 
+       default: 
+         if ( waitpid(pid, &status, 0) < 0 ) {
+           perror("waitpid()");
+           exit(EXIT_FAILURE);
+         }
+      }
+    }
+
     if (striComp(command,"-q",2))
       break;
   }
