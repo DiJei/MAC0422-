@@ -5,18 +5,26 @@ CFLAGS=-I$(IDIR)
 ODIR=obj
 vpath %.c src
 
-_DEPS = util.h
+all: ep1 ep1sh
+#ep1sh
+_DEPS = ep1sh_util.h ep1_util.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = ep1shFunc.o ep1sh.o 
+_OBJ = ep1sh_func.o ep1sh.o 
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
+_OBJB = ep1_func.o ep1.o 
+OBJB = $(patsubst %,$(ODIR)/%,$(_OBJB))
+
+
 $(ODIR)/%.o:  %.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS) -lreadline 
+	$(CC) -c -o $@ $< $(CFLAGS) -lreadline -pthread
+
+ep1: $(OBJB)
+	gcc -o $@ $^ $(CFLAGS) -pthread -lreadline 
 
 ep1sh: $(OBJ)
 	gcc -o $@ $^ $(CFLAGS) -lreadline 
-
 
 .PHONY: clean
 

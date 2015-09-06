@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <util.h>
+#include <ep1sh_util.h>
 
 int main(int argc, char *argv[]) {
   int x;
